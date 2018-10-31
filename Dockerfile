@@ -2,7 +2,7 @@ FROM ventx/alpine:3.6
 
 ENV KUBE_LATEST_VERSION="v1.10.3"
 ENV KUBE_RUNNING_VERSION="v1.9.3"
-ENV HELM_VERSION="v2.8.1"
+ENV HELM_VERSION="v2.8.2"
 ENV AWSCLI 1.16.20
 
 RUN  apk --update add git openssh-client curl python py-pip bash python gettext postgresql-client vim xmlstarlet \
