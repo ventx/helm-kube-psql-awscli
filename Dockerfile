@@ -13,7 +13,7 @@ RUN  apk --update add git openssh-client curl python py-pip bash python gettext 
   && wget -q http://storage.googleapis.com/kubernetes-helm/helm-${HELM_VERSION}-linux-amd64.tar.gz -O - | tar -xzO linux-amd64/helm > /usr/local/bin/helm \
   && chmod +x /usr/local/bin/helm \
   && pip install --upgrade pip \
-  && pip install selenium \
+  && pip install selenium requests \
   && pip install awscli==${AWSCLI} 
  
 WORKDIR /work
