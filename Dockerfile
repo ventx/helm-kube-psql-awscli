@@ -4,8 +4,7 @@ ENV KUBE_LATEST_VERSION="v1.10.3"
 ENV KUBE_RUNNING_VERSION="v1.9.3"
 ENV HELM_VERSION="v2.11.0"
 ENV AWSCLI 1.16.20
-
-RUN  apk --update add git openssh-client curl python py-pip bash python gettext postgresql-client vim xmlstarlet \
+RUN  apk --update add git openssh-client curl python py-pip bash python gettext postgresql-client vim xmlstarlet openjdk7-jre \
   gcc g++ make python-dev libxml2-dev py-libxml2 py-libxslt libxml2-utils libxml2-dev libxslt-dev \
   && wget -q https://storage.googleapis.com/kubernetes-release/release/${KUBE_RUNNING_VERSION}/bin/linux/amd64/kubectl -O /usr/local/bin/kubectl \
   && chmod +x /usr/local/bin/kubectl \
@@ -16,10 +15,10 @@ RUN  apk --update add git openssh-client curl python py-pip bash python gettext 
 RUN pip install --upgrade pip \
   && pip install lxml selenium requests allure-pytest pytest-allure-adaptor \
   && pip install awscli==${AWSCLI}
-RUN wget -q https://dl.bintray.com/qameta/generic/io/qameta/allure/allure/2.7.0/allure-2.7.0.tgz \
-  && tar -xzvf allure-2.7.0.tgz \
-  && mv allure-2.7.0 /opt/ \ 
-  && rm allure-2.7.0.tgz 
+
+ADD https://dl.bintray.com/qameta/generic/io/qameta/allure/allure/2.7.0/allure-2.7.0.tgz /opt/
+RUN tar -xvzf /opt/allure-2.7.0.tgz --directory /opt/ \
+    && rm /opt/allure-2.7.0.tgz
 
 ENV PATH="/opt/allure-2.7.0/bin:${PATH}"
  
