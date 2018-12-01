@@ -13,7 +13,7 @@ RUN  apk --update add git openssh-client curl python py-pip bash python gettext 
   && wget -q http://storage.googleapis.com/kubernetes-helm/helm-${HELM_VERSION}-linux-amd64.tar.gz -O - | tar -xzO linux-amd64/helm > /usr/local/bin/helm \
   && chmod +x /usr/local/bin/helm 
 RUN pip install --upgrade pip \
-  && pip install lxml selenium requests allure-pytest pytest-allure-adaptor \
+  && pip install lxml selenium html requests allure-pytest pytest-allure-adaptor \
   && pip install awscli==${AWSCLI}
 
 ADD https://dl.bintray.com/qameta/generic/io/qameta/allure/allure/2.7.0/allure-2.7.0.tgz /opt/
