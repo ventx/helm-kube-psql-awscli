@@ -14,7 +14,8 @@ RUN  apk --update add git openssh-client curl python py-pip bash python gettext 
   && chmod +x /usr/local/bin/helm 
 RUN pip install --upgrade pip \
   && pip install lxml selenium html requests allure-pytest pytest-allure-adaptor \
-  && pip install awscli==${AWSCLI}
+  && pip install awscli==${AWSCLI} \
+  && pip3 install imbox six
 
 ADD https://dl.bintray.com/qameta/generic/io/qameta/allure/allure/2.7.0/allure-2.7.0.tgz /opt/
 RUN tar -xvzf /opt/allure-2.7.0.tgz --directory /opt/ \
