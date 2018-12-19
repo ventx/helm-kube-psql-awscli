@@ -1,7 +1,7 @@
 FROM ventx/alpine:3.6
 
-ENV KUBE_LATEST_VERSION="v1.10.3"
-ENV KUBE_RUNNING_VERSION="v1.9.3"
+ENV KUBE_LATEST_VERSION="v1.11.6"
+ENV KUBE_RUNNING_VERSION="v1.11.6"
 ENV HELM_VERSION="v2.11.0"
 ENV AWSCLI 1.16.20
 RUN  apk --update add git openssh-client curl python3-dev py-pip bash python gettext postgresql-client vim xmlstarlet python3 openjdk8-jre \
