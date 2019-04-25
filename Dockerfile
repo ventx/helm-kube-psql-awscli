@@ -2,35 +2,35 @@ FROM ventx/alpine:3.6
 
 LABEL maintainer="martin@ventx.de, hajo@ventx.de"
 
-ENV KUBE_LATEST_VERSION v1.11.6
+ENV KUBE_LATEST_VERSION v1.13.4
 ENV KUBE_RUNNING_VERSION v1.11.6
-ENV HELM_VERSION v2.13.0
-ENV AWSCLI 1.16.125
+ENV HELM_VERSION v2.13.1
+ENV AWSCLI 1.16.145
 
 RUN apk --update --no-cache add \
-  git \
-  openssh-client \
-  curl \
-  python3-dev \
-  py-pip \
   bash \
-  python \
-  gettext \
-  postgresql-client \
-  vim \
-  xmlstarlet \
-  python3 \
-  openjdk8-jre \
-  gcc \
+  curl \
   g++ \
-  make \
-  python-dev \
+  gcc \
+  gettext \
+  git \
   libxml2-dev \
+  libxml2-utils \
+  libxslt-dev \
+  make \
+  openjdk8-jre \
+  openssh-client \
+  postgresql-client \
+  python \
+  python-dev \
+  python3 \
+  python3-dev \
   py-libxml2 \
   py-libxslt \
-  libxml2-utils \
-  libxml2-dev \
-  libxslt-dev
+  py-pip \
+  vim \
+  xmlstarlet \
+  tzdata
 RUN wget -q https://storage.googleapis.com/kubernetes-release/release/${KUBE_RUNNING_VERSION}/bin/linux/amd64/kubectl -O /usr/local/bin/kubectl \
   && chmod +x /usr/local/bin/kubectl \
   && wget -q https://storage.googleapis.com/kubernetes-release/release/${KUBE_LATEST_VERSION}/bin/linux/amd64/kubectl -O /usr/local/bin/kubectl_latest \
@@ -47,7 +47,10 @@ ADD https://dl.bintray.com/qameta/generic/io/qameta/allure/allure/2.7.0/allure-2
 RUN tar -xvzf /opt/allure-2.7.0.tgz --directory /opt/ \
     && rm /opt/allure-2.7.0.tgz
 
+ENV TZ Europe/Berlin
 ENV PATH="/opt/allure-2.7.0/bin:${PATH}"
+
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
  
 WORKDIR /work
 
