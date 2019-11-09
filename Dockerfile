@@ -57,8 +57,8 @@ RUN tar -xvzf /opt/allure-2.7.0.tgz --directory /opt/ \
     && rm /opt/allure-2.7.0.tgz
 
 RUN helm init --client-only
-RUN mkdir -p /usr/local/helm/plugins && \
-  wget -c https://github.com/databus23/helm-diff/releases/download/${HELM_DIFF_VERSION}/helm-diff-linux.tgz -O - | tar -C /usr/local/helm/plugins -xzv && \
+RUN mkdir -p /usr/local/helm/plugins \
+  && wget -c https://github.com/databus23/helm-diff/releases/download/${HELM_DIFF_VERSION}/helm-diff-linux.tgz -O - | tar -C /usr/local/helm/plugins -xzv
 RUN helm plugin install https://github.com/futuresimple/helm-secrets
 
 # RUN helm plugin install https://github.com/databus23/helm-diff.git
